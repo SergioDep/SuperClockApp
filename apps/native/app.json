@@ -1,8 +1,7 @@
 {
   "expo": {
-    "newArchEnabled": false,
-    "name": "NotesContract",
-    "slug": "NotesContract",
+    "name": "SuperClock",
+    "slug": "SuperClock",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,19 +11,27 @@
       "resizeMode": "contain",
       "backgroundColor": "#0D87E1"
     },
+    "newArchEnabled": true,
+    "jsEngine": "hermes",
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
     "android": {
+      "package": "com.superclock",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
     },
-    "plugins": ["expo-font"]
+    "plugins": ["expo-font"],
+    "experiments": {
+      "tsconfigPaths": true,
+      "typedRoutes": true
+    }
   }
 }
