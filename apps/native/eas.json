@@ -6,6 +6,10 @@
     "development": {
       "extends": "production",
       "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_CONVEX_URL": "EXPO_PUBLIC_CONVEX_URL",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY"
+      },
       "android": {
         "gradleCommand": ":app:assembleDebug"
       },
@@ -25,6 +29,10 @@
     "preview": {
       "extends": "production",
       "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_CONVEX_URL": "EXPO_PUBLIC_CONVEX_URL",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY"
+      },
       "ios": { "simulator": true },
       "android": { "buildType": "apk" }
     },
@@ -32,7 +40,13 @@
       "extends": "preview",
       "ios": { "simulator": false }
     },
-    "production": {}
+    "production": {
+      "node": "22.14.0",
+      "env": {
+        "EXPO_PUBLIC_CONVEX_URL": "EXPO_PUBLIC_CONVEX_URL",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY"
+      }
+    }
   },
   "submit": {
     "production": {}

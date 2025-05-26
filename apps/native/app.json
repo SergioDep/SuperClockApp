@@ -13,7 +13,9 @@
     },
     "newArchEnabled": true,
     "jsEngine": "hermes",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -28,10 +30,18 @@
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
-    "plugins": ["expo-font"],
+    "plugins": [
+      "expo-font",
+      "expo-web-browser"
+    ],
     "experiments": {
       "tsconfigPaths": true,
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "782d6b7b-fd9d-4c03-8e80-f6fe839c6225"
+      }
     }
   }
 }
