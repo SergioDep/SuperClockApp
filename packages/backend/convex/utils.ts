@@ -1,3 +1,5 @@
+import { Auth } from "convex/server";
+
 export function missingEnvVariableUrl(envVarName: string, whereToGet: string) {
   const deployment = deploymentName();
   if (!deployment) return `Missing ${envVarName} in environment variables.`;
@@ -14,3 +16,7 @@ export function deploymentName() {
   const regex = new RegExp("https://(.+).convex.cloud");
   return regex.exec(url)?.[1];
 }
+
+export const getUserId = async (ctx: { auth: Auth }) => {
+  return (await ctx.auth.getUserIdentity())?.subject;
+};
