@@ -7,12 +7,16 @@ import {
   SafeAreaView,
   FlatList,
   Dimensions,
+  Button,
 } from "react-native";
 import Header from "../components/demo/Header";
 import TaskCard from "../components/demo/TaskCard";
 import AddTaskButton from "../components/demo/AddTaskButton";
 import AddTaskModal from "../components/demo/AddTaskModal";
 import { Task } from "../components/demo/types";
+import { useNavigation } from "@react-navigation/native";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import type { RootStackParamList } from "../navigation/Navigation"; // Adjust path if necessary
 
 const { width } = Dimensions.get("window");
 const CARD_MARGIN = 8;
@@ -61,10 +65,12 @@ const DemoScreen: React.FC = () => {
   const [welcomeMessage, setWelcomeMessage] = useState(
     "Tap an activity to begin.",
   );
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   // Timer effect
   useEffect(() => {
-    let intervalId: NodeJS.Timeout | null = null;
+    let intervalId: ReturnType<typeof setInterval> | null = null; // Corrected type for intervalId
 
     if (activeTaskId) {
       intervalId = setInterval(() => {
@@ -153,6 +159,19 @@ const DemoScreen: React.FC = () => {
 
       <View style={styles.welcomeContainer}>
         <Text style={styles.welcomeMessage}>{welcomeMessage}</Text>
+      </View>
+
+      <View
+        style={{
+          marginHorizontal: GRID_PADDING,
+          marginBottom: 10,
+          paddingHorizontal: GRID_PADDING,
+        }}
+      >
+        <Button
+          title="Go to My Projects"
+          onPress={() => navigation.navigate("ProjectList")}
+        />
       </View>
 
       <View style={styles.gridContainer}>

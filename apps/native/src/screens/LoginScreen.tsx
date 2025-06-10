@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
-import { useOAuth } from "@clerk/clerk-expo";
+import { useAuth, useOAuth } from "@clerk/clerk-expo";
 import { AntDesign } from "@expo/vector-icons";
 
 const LoginScreen = ({ navigation }) => {
+  const { isSignedIn } = useAuth();
+
+  useEffect(() => {
+    if (isSignedIn) {
+      navigation.navigate("ProjectList");
+    }
+  }, [isSignedIn]);
+
   const { startOAuthFlow: startGoogleAuthFlow } = useOAuth({
     strategy: "oauth_google",
   });
@@ -18,13 +26,13 @@ const LoginScreen = ({ navigation }) => {
         const { createdSessionId, setActive } = await startGoogleAuthFlow();
         if (createdSessionId) {
           setActive({ session: createdSessionId });
-          navigation.navigate("NotesDashboardScreen");
+          navigation.navigate("ProjectList");
         }
       } else if (authType === "apple") {
         const { createdSessionId, setActive } = await startAppleAuthFlow();
         if (createdSessionId) {
           setActive({ session: createdSessionId });
-          navigation.navigate("NotesDashboardScreen");
+          navigation.navigate("ProjectList");
         }
       }
     } catch (err) {
